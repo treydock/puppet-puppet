@@ -8,7 +8,6 @@ class puppet::agent::config inherits puppet::config {
     'pluginsync':        value => $::puppet::pluginsync;
     'masterport':        value => $::puppet::port;
     'environment':       value => $::puppet::environment;
-    'certname':          value => $::puppet::client_certname;
     'listen':            value => $::puppet::listen;
     'splay':             value => $::puppet::splay;
     'splaylimit':        value => $::puppet::splaylimit;
@@ -34,6 +33,11 @@ class puppet::agent::config inherits puppet::config {
   if $::puppet::postrun_command {
     puppet::config::agent {
       'postrun_command':   value => $::puppet::postrun_command;
+    }
+  }
+  if $::puppet::client_certname {
+    puppet::config::agent {
+      'certname':          value => $::puppet::client_certname;
     }
   }
 
